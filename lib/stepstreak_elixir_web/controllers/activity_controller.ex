@@ -2,6 +2,7 @@ defmodule StepstreakElixirWeb.ActivityController do
   use StepstreakElixirWeb, :controller
 
   alias StepstreakElixir.Activity
+  alias StepstreakElixir.Services.ProducerService
   alias StepstreakElixir.Repo
   alias Ecto.Multi
 
@@ -14,7 +15,9 @@ defmodule StepstreakElixirWeb.ActivityController do
       end)
 
     case Repo.transaction(multi) do
-      {:ok, _} ->
+      {:ok, results} ->
+        ProducerService.send_to_rabbitmq(results)
+
         conn
         |> put_status(:created)
         |> json(%{message: "Activities created successfully"})
