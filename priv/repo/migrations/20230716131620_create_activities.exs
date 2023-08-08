@@ -7,6 +7,8 @@ defmodule StepstreakElixir.Repo.Migrations.CreateActivities do
       add :steps, :integer
       add :calories, :float
       add :distance, :float
+      add :heart_rate, :float
+      add :resting_heart_rate, :float
 
       timestamps()
     end
