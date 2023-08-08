@@ -7,8 +7,13 @@ defmodule StepstreakElixirWeb.ActivityController do
   alias Ecto.Multi
 
   def create(conn, %{"data" => activities_params}) do
+    converted_params = Recase.Enumerable.convert_keys(
+      activities_params,
+      &Recase.to_snake/1
+    )
+
     multi =
-      activities_params
+      converted_params
       |> Enum.with_index()
       |> Enum.reduce(Multi.new(), fn {activity_params, index}, multi ->
         Multi.insert(multi, :"activity_#{index}", Activity.changeset(%Activity{}, activity_params))
