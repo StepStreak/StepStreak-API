@@ -44,7 +44,8 @@ defmodule StepstreakElixir.MixProject do
       {:gettext, "~> 0.20"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
-      {:amqp, "~> 3.0"}
+      {:amqp, "~> 3.0"},
+      {:recase, "~> 0.5"}
     ]
   end
 
