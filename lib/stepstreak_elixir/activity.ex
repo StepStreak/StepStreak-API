@@ -9,6 +9,7 @@ defmodule StepstreakElixir.Activity do
     field :distance, :float
     field :heart_rate, :float
     field :resting_heart_rate, :float
+    field :max_heart_rate, :float
 
     timestamps()
   end
@@ -16,7 +17,7 @@ defmodule StepstreakElixir.Activity do
   @doc false
   def changeset(activity, attrs) do
     activity
-    |> cast(attrs, [:date, :steps, :calories, :distance, :heart_rate, :resting_heart_rate])
-    |> validate_required([:date, :steps, :calories, :distance, :heart_rate, :resting_heart_rate])
+    |> cast(attrs, [:date, :steps, :calories, :distance, :heart_rate, :resting_heart_rate, :max_heart_rate])
+    |> validate_required([:date, :steps, :calories, :distance, :heart_rate, :resting_heart_rate, :max_heart_rate])
   end
 end
